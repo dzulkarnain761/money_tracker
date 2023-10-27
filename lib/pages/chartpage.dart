@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
+import 'package:shifting_tabbar/shifting_tabbar.dart';
 
 class ChartPage extends StatefulWidget {
   const ChartPage({super.key});
@@ -8,6 +10,10 @@ class ChartPage extends StatefulWidget {
 }
 
 class _ChartPageState extends State<ChartPage> {
+  int _tabSelectedIndexSelected = 0;
+
+  List<String> _listTextSelectedToggle = ["Month", "Year"];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,14 +26,43 @@ class _ChartPageState extends State<ChartPage> {
         children: [
           Container(
             margin: EdgeInsets.zero,
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.fromLTRB(20, 40, 20, 20),
             alignment: Alignment.center, // Center the custom app bar
             color: Colors.grey, // Customize the app bar color
-            child: const Text(
-              'Money Manager',
-              style: TextStyle(
-                color: Colors.white, // Customize the text color
-                fontSize: 18,
+            child: Center(
+              child: Column(
+                children: <Widget>[
+                  const Text(
+                    'Expenses',
+                    style: TextStyle(
+                      color: Colors.white, // Customize the text color
+                      fontSize: 18,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  FlutterToggleTab(
+                    width: 60,
+                    height: 30,
+                    borderRadius: 0,
+                    selectedIndex: _tabSelectedIndexSelected,
+                    selectedTextStyle: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    unSelectedTextStyle: const TextStyle(
+                      color: Colors.grey,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                    ),
+                    labels: _listTextSelectedToggle,
+                    selectedLabelIndex: (index) {
+                      setState(() {
+                        _tabSelectedIndexSelected = index;
+                      });
+                    },
+                  ),
+                ],
               ),
             ),
           ),

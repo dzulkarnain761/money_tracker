@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           Container(
             margin: EdgeInsets.zero,
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.fromLTRB(20, 40, 20, 20),
             alignment: Alignment.center, // Center the custom app bar
             color: Colors.grey, // Customize the app bar color
             child: const Text(
