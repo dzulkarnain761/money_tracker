@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertesting/pages/addPage.dart';
 import 'package:translucent_navigation_bar/translucent_navigation_bar.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import '../pages/homepage.dart';
@@ -39,11 +40,11 @@ class _NavigationBarState extends State<NavigationBarPage> {
           );
         },
         onMainIconTap: () {
-          showDialog(
+          showModalBottomSheet(
             context: context,
-            builder: (context) => const AlertDialog(
-              title: Text('Main Icon pressed'),
-            ),
+            builder: (context) {
+              return const AddPage();
+            },
           );
         },
         selectedIndex: selectedIndex,

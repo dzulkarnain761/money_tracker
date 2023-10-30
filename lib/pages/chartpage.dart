@@ -17,7 +17,7 @@ class _ChartPageState extends State<ChartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[800],
+      backgroundColor: Colors.grey[900],
       body: Column(
         mainAxisSize: MainAxisSize.min, // Set the mainAxisSize to min
         mainAxisAlignment:
@@ -28,7 +28,7 @@ class _ChartPageState extends State<ChartPage> {
             margin: EdgeInsets.zero,
             padding: const EdgeInsets.fromLTRB(20, 40, 20, 20),
             alignment: Alignment.center, // Center the custom app bar
-            color: Colors.grey, // Customize the app bar color
+            color: Colors.grey.shade600, // Customize the app bar color
             child: Center(
               child: Column(
                 children: <Widget>[
@@ -41,18 +41,20 @@ class _ChartPageState extends State<ChartPage> {
                   ),
                   SizedBox(height: 10),
                   FlutterToggleTab(
-                    width: 60,
-                    height: 30,
-                    borderRadius: 0,
+                    width: 55,
+                    height: 25,
+                    selectedBackgroundColors: [Colors.grey.shade900],
+                    unSelectedBackgroundColors: [Colors.white],
+                    borderRadius: 5,
                     selectedIndex: _tabSelectedIndexSelected,
                     selectedTextStyle: const TextStyle(
                       color: Colors.white,
-                      fontSize: 14,
+                      fontSize: 12,
                       fontWeight: FontWeight.w600,
                     ),
                     unSelectedTextStyle: const TextStyle(
-                      color: Colors.grey,
-                      fontSize: 14,
+                      color: Colors.black,
+                      fontSize: 12,
                       fontWeight: FontWeight.w400,
                     ),
                     labels: _listTextSelectedToggle,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:fluttertesting/pages/expensespage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -29,7 +30,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     String formattedDate = DateFormat.yMMM().format(selectedDate);
     return Scaffold(
-      backgroundColor: Colors.grey[800],
+      backgroundColor: Colors.grey[900],
       body: Column(
         mainAxisSize: MainAxisSize.min, // Set the mainAxisSize to min
         mainAxisAlignment:
@@ -40,7 +41,7 @@ class _HomePageState extends State<HomePage> {
             margin: EdgeInsets.zero,
             padding: const EdgeInsets.fromLTRB(20, 40, 20, 20),
             alignment: Alignment.center, // Center the custom app bar
-            color: Colors.grey, // Customize the app bar color
+            color: Colors.grey.shade600, // Customize the app bar color
             child: const Text(
               'Money Manager',
               style: TextStyle(
@@ -57,8 +58,10 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Expanded(
                   child: ElevatedButton(
+                    
                     onPressed: () => _selectDate(context),
                     style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.grey.shade600),
                       shape: MaterialStateProperty.all(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(0.0),
@@ -71,7 +74,7 @@ class _HomePageState extends State<HomePage> {
                           padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
                           child: Column(
                             children: [
-                             Align(
+                              Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(
                                   '${selectedDate.year}',
@@ -80,7 +83,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                               Row(
                                 children: [
-                                   Padding(
+                                  Padding(
                                     padding: EdgeInsets.fromLTRB(0, 8, 0, 8),
                                     child: Text(
                                       DateFormat.MMM().format(selectedDate),
@@ -104,8 +107,16 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      showModalBottomSheet(
+                        context: context,
+                        builder: (context) {
+                          return const ExpensePage();
+                        },
+                      );
+                    },
                     style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.grey.shade600),
                       shape: MaterialStateProperty.all(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(0.0),
@@ -141,6 +152,7 @@ class _HomePageState extends State<HomePage> {
                   child: ElevatedButton(
                     onPressed: () {},
                     style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.grey.shade600),
                       shape: MaterialStateProperty.all(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(0.0),
@@ -176,6 +188,7 @@ class _HomePageState extends State<HomePage> {
                   child: ElevatedButton(
                     onPressed: () {},
                     style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.grey.shade600),
                       shape: MaterialStateProperty.all(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(0.0),
