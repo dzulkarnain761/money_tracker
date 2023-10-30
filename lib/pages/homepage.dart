@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -8,8 +9,25 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  DateTime selectedDate = DateTime.now();
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+      initialDatePickerMode: DatePickerMode.day,
+    );
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+      });
+  }
+
   @override
   Widget build(BuildContext context) {
+    String formattedDate = DateFormat.yMMM().format(selectedDate);
     return Scaffold(
       backgroundColor: Colors.grey[800],
       body: Column(
@@ -39,7 +57,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () => _selectDate(context),
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all(
                         RoundedRectangleBorder(
@@ -47,30 +65,30 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
-                    child: const Column(
+                    child: Column(
                       children: <Widget>[
                         Padding(
                           padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
                           child: Column(
                             children: [
-                              Align(
+                             Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(
-                                  '2023',
+                                  '${selectedDate.year}',
                                   style: TextStyle(color: Colors.white),
                                 ),
                               ),
                               Row(
                                 children: [
-                                  Padding(
+                                   Padding(
                                     padding: EdgeInsets.fromLTRB(0, 8, 0, 8),
                                     child: Text(
-                                      'Oct',
-                                      style: TextStyle(
+                                      DateFormat.MMM().format(selectedDate),
+                                      style: const TextStyle(
                                           color: Colors.white, fontSize: 16),
                                     ),
                                   ),
-                                  Icon(
+                                  const Icon(
                                     Icons.arrow_drop_down_rounded,
                                     color: Colors.white,
                                     size: 25,
